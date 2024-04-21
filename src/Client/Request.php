@@ -121,10 +121,10 @@ class Request
     }
 
     public function getResponse(
-         int    $timeout   = 30,   // socket timeout, useful for offline resources
-        ?int    $limit     = null, // content length, null for unlimited
-        ?int    &$length   = 0,    // initial response length, do not change without special needs
-        ?int    &$code     = null, // error code for debug
+            int $timeout   = 30,   // socket timeout, useful for offline resources
+           ?int $limit     = null, // content length, null for unlimited
+           ?int &$length   = 0,    // initial response length, do not change without special needs
+           ?int &$code     = null, // error code for debug
         ?string &$message  = null, // error message for debug
          string &$response = ''    // response init, also returning by this method
     ): ?string
