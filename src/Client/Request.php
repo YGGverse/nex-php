@@ -6,8 +6,6 @@ namespace Yggverse\Nex\Client;
 
 class Request
 {
-    private ?string $_ip = null;
-
     private string $_host;
     private int    $_port;
     private string $_path;
@@ -15,7 +13,7 @@ class Request
 
     private array $_options = [];
 
-    public function __construct(string $url, ?string $ip = null)
+    public function __construct(string $url)
     {
         if ($host = parse_url($url,  PHP_URL_HOST))
         {
@@ -70,13 +68,6 @@ class Request
                 ''
             );
         }
-
-        if ($ip && false !== filter_var($ip, FILTER_VALIDATE_IP))
-        {
-            $this->setResolvedHost(
-                $ip
-            );
-        }
     }
 
     public function setOptions(array $value): void
@@ -129,29 +120,19 @@ class Request
         return $this->_query;
     }
 
-    public function setResolvedHost(?string $value): void
-    {
-        $this->_ip = $value;
-    }
-
-    public function getResolvedHost(): ?string
-    {
-        return $this->_ip;
-    }
-
     public function getResponse(
-        int $timeout = 30, // socket timeout, useful for offline resources
-        ?int $limit = null, // content length, null for unlimited
-        ?int &$length = 0, // initial response length, do not change without special needs
-        ?int &$code = null, // error code for debug
-        ?string &$message = null, // error message for debug
-        string &$response = '' // response init, also returning by this method
+         int    $timeout   = 30,   // socket timeout, useful for offline resources
+        ?int    $limit     = null, // content length, null for unlimited
+        ?int    &$length   = 0,    // initial response length, do not change without special needs
+        ?int    &$code     = null, // error code for debug
+        ?string &$message  = null, // error message for debug
+         string &$response = ''    // response init, also returning by this method
     ): ?string
     {
         $connection = stream_socket_client(
             sprintf(
                 'tcp://%s:%d',
-                $this->_ip ? $this->_ip : $this->_host,
+                $this->_host,
                 $this->_port
             ),
             $code,
