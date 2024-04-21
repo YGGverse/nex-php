@@ -171,9 +171,7 @@ class Request
         fwrite(
             $connection,
             sprintf(
-                "nex://%s:%d%s%s\r\n",
-                $this->_host,
-                $this->_port,
+                "%s%s\r\n",
                 $this->_path,
                 $this->_query
             )
