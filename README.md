@@ -59,6 +59,8 @@ $server = new \Yggverse\Nex\Server('127.0.0.1', 1915);
 #### Server::getHost
 #### Server::setPort
 #### Server::getPort
+#### Server::setSize
+#### Server::getSize
 
 #### Server::start
 
