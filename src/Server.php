@@ -7,11 +7,13 @@ class Server
     private string $_host;
     private int    $_port;
     private int    $_size;
+    private bool   $_live;
 
     public function __construct(
         string $host = '127.0.0.1',
         int    $port = 1915,
-        int    $size = 1024
+        int    $size = 1024,
+        bool   $live = true
     ) {
         $this->setHost(
             $host
@@ -23,6 +25,10 @@ class Server
 
         $this->setSize(
             $size
+        );
+
+        $this->setLive(
+            $live
         );
     }
 
@@ -75,6 +81,18 @@ class Server
         $this->_size = $value;
     }
 
+    public function getLive(): bool
+    {
+        return $this->_live;
+    }
+
+    public function setLive(
+        bool $value
+    ): void
+    {
+        $this->_live = $value;
+    }
+
     public function start(
         ?callable $handler = null
     ): void
@@ -90,8 +108,17 @@ class Server
             STREAM_SERVER_BIND | STREAM_SERVER_LISTEN
         );
 
-        while ($socket)
+        do
         {
+            if (!$this->_live)
+            {
+                fclose(
+                    $socket
+                );
+
+                break;
+            }
+
             $incoming = stream_socket_accept(
                 $socket, -1, $connect
             );
@@ -123,6 +150,14 @@ class Server
             fclose(
                 $incoming
             );
-        }
+
+        } while ($this->_live);
+    }
+
+    public function stop(): void
+    {
+        $this->setLive(
+            false
+        );
     }
 }

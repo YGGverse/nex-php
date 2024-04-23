@@ -61,6 +61,8 @@ $server = new \Yggverse\Nex\Server('127.0.0.1', 1915);
 #### Server::getPort
 #### Server::setSize
 #### Server::getSize
+#### Server::setLive
+#### Server::getLive
 
 #### Server::start
 
@@ -82,3 +84,9 @@ $server->start(
     }
 );
 ```
+
+#### Server::stop
+
+Stop server instance.
+
+Same to `Server::setLive(false)`
