@@ -18,7 +18,7 @@ $client = new \Yggverse\Nex\Client;
 
 #### Client::request
 
-Request data from URL
+Request data from URL | URI if constructed by URL
 
 ``` php
 var_dump(
