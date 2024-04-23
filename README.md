@@ -52,7 +52,7 @@ $server = new \Yggverse\Nex\Server;
 Provide optional `host`, `port` and `size` arguments in constructor or use available setters after object initiation.
 
 ``` php
-$server = new \Yggverse\Nex\Server('127.0.0.1', 1915);
+$server = new \Yggverse\Nex\Server('127.0.0.1', 1900);
 ```
 
 #### Server::setHost

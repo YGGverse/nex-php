@@ -11,7 +11,7 @@ class Server
 
     public function __construct(
         string $host = '127.0.0.1',
-        int    $port = 1915,
+        int    $port = 1900,
         int    $size = 1024,
         bool   $live = true
     ) {
