@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Yggverse\Nex\Client;
+namespace Yggverse\Nex;
 
-class Request
+class Client
 {
     private string $_host;
     private int    $_port;
@@ -13,59 +13,13 @@ class Request
 
     private array $_options = [];
 
-    public function __construct(string $url)
-    {
-        if ($host = parse_url($url,  PHP_URL_HOST))
+    public function __construct(
+        ?string $request = null
+    ) {
+        if ($request)
         {
-            $this->setHost(
-                $host
-            );
-        }
-
-        else
-        {
-            throw new Exception(); // @TODO
-        }
-
-        if ($port = parse_url($url,  PHP_URL_PORT))
-        {
-            $this->setPort(
-                $port
-            );
-        }
-
-        else
-        {
-            $this->setPort(
-                1900
-            );
-        }
-
-        if ($path = parse_url($url,  PHP_URL_PATH))
-        {
-            $this->setPath(
-                $path
-            );
-        }
-
-        else
-        {
-            $this->setPath(
-                ''
-            );
-        }
-
-        if ($query = parse_url($url,  PHP_URL_QUERY))
-        {
-            $this->setQuery(
-                $query
-            );
-        }
-
-        else
-        {
-            $this->setQuery(
-                ''
+            $this->_init(
+                $request
             );
         }
     }
@@ -120,7 +74,8 @@ class Request
         return $this->_query;
     }
 
-    public function getResponse(
+    public function request(
+         string $address,          // URL|URI
             int $timeout   = 30,   // socket timeout, useful for offline resources
            ?int $limit     = null, // content length, null for unlimited
            ?int &$length   = 0,    // initial response length, do not change without special needs
@@ -129,6 +84,10 @@ class Request
          string &$response = ''    // response init, also returning by this method
     ): ?string
     {
+        $this->_init(
+            $address
+        );
+
         $connection = stream_socket_client(
             sprintf(
                 'tcp://%s:%d',
@@ -177,5 +136,90 @@ class Request
         );
 
         return $response;
+    }
+
+
+    private function _url(
+        ?string $value
+    ): bool
+    {
+        if (!$value)
+        {
+            return false;
+        }
+
+        if ('nex' != parse_url($value,  PHP_URL_SCHEME))
+        {
+            return false;
+        }
+
+        if ($host = parse_url($value,  PHP_URL_HOST))
+        {
+            $this->setHost(
+                $host
+            );
+        }
+
+        else
+        {
+            return false;
+        }
+
+        if ($port = parse_url($value,  PHP_URL_PORT))
+        {
+            $this->setPort(
+                $port
+            );
+        }
+
+        else
+        {
+            $this->setPort(
+                1900
+            );
+        }
+
+        if ($path = parse_url($value,  PHP_URL_PATH))
+        {
+            $this->setPath(
+                $path
+            );
+        }
+
+        else
+        {
+            $this->setPath(
+                ''
+            );
+        }
+
+        if ($query = parse_url($value,  PHP_URL_QUERY))
+        {
+            $this->setQuery(
+                $query
+            );
+        }
+
+        else
+        {
+            $this->setQuery(
+                ''
+            );
+        }
+
+        return true;
+    }
+
+    private function _init(
+        string $request
+    ): void
+    {
+        if (!$this->_url($request))
+        {
+            if (!$this->_host || !$this->_port)
+            {
+                throw new \Exception();
+            }
+        }
     }
 }

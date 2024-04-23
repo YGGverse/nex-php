@@ -12,34 +12,32 @@ composer require yggverse/nex
 
 PHP interface for Nex protocol queries
 
-### Request
-
 ``` php
-$request = new \Yggverse\Nex\Client\Request(
-    'nex://nightfall.city/nex/'
-);
+$client = new \Yggverse\Nex\Client;
 ```
 
-#### Request::getResponse
+#### Client::request
 
-Execute requested URL and return raw response
+Request data from URL
 
 ``` php
 var_dump(
-    $request->getResponse()
+    $client->request(
+        'nex://nightfall.city/nex/'
+    )
 );
 ```
 
-#### Request::setHost
-#### Request::getHost
-#### Request::setPort
-#### Request::getPort
-#### Request::setPath
-#### Request::getPath
-#### Request::setQuery
-#### Request::getQuery
-#### Request::getOptions
-#### Request::setOptions
+#### Client::setHost
+#### Client::getHost
+#### Client::setPort
+#### Client::getPort
+#### Client::setPath
+#### Client::getPath
+#### Client::setQuery
+#### Client::getQuery
+#### Client::getOptions
+#### Client::setOptions
 
 ## Server
 
