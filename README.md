@@ -1,6 +1,6 @@
 # nex-php
 
-PHP 8 Library for Nex Protocol
+PHP 8 Library for Nex Protocol (see also [nps-php](https://github.com/YGGverse/nps-php))
 
 ## Usage
 
