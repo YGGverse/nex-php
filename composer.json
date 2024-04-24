@@ -1,7 +1,7 @@
 {
     "name": "yggverse/nex",
     "description": "PHP 8 Library for Nex Protocol",
-    "keywords": [ "yggverse", "nex", "nex-protocol", "client" ],
+    "keywords": [ "yggverse", "nex", "nex-protocol", "client", "server" ],
     "homepage": "https://github.com/yggverse/nex-php",
     "type": "library",
     "license": "MIT",
