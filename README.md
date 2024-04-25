@@ -73,12 +73,15 @@ $server->start(
     function (
         string $request,
         string $connect
-    ) {
+    ): ?string
+    {
         printf(
             'connection: %s request: %s',
             $connect,
             $request
         );
+
+        return null; // null|string response
     }
 );
 ```

@@ -145,6 +145,14 @@ class Server
                     $request,
                     $connect
                 );
+
+                if ($response)
+                {
+                    fwrite(
+                        $incoming,
+                        $response
+                    );
+                }
             }
 
             fclose(
