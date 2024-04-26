@@ -43,8 +43,6 @@ var_dump(
 
 Build interactive server instance to listen Nex protocol connections!
 
-* [next](https://github.com/YGGverse/next) - PHP 8 Server for Nex Protocol
-
 ``` php
 $server = new \Yggverse\Nex\Server;
 ```
@@ -93,3 +91,7 @@ $server->start(
 Stop server instance.
 
 Same to `Server::setLive(false)`
+
+### Examples
+
+* [next](https://github.com/YGGverse/next) - PHP 8 Server for Nex Protocol
