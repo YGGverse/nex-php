@@ -12,6 +12,8 @@ composer require yggverse/nex
 
 PHP interface for Nex protocol queries
 
+### Documentation
+
 ``` php
 $client = new \Yggverse\Nex\Client;
 ```
@@ -42,6 +44,12 @@ var_dump(
 ## Server
 
 Build interactive server instance to listen Nex protocol connections!
+
+### Example
+
+* [next](https://github.com/YGGverse/next) - PHP 8 Server for Nex Protocol
+
+### Documentation
 
 ``` php
 $server = new \Yggverse\Nex\Server;
