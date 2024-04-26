@@ -1,6 +1,6 @@
 # nex-php
 
-PHP 8 Library for Nex Protocol (see also [nps-php](https://github.com/YGGverse/nps-php))
+PHP 8 Library for NEX Protocol (see also [nps-php](https://github.com/YGGverse/nps-php))
 
 ## Usage
 
@@ -10,7 +10,7 @@ composer require yggverse/nex
 
 ## Client
 
-PHP interface for Nex protocol queries
+PHP interface for NEX protocol queries
 
 ``` php
 $client = new \Yggverse\Nex\Client;
@@ -41,7 +41,7 @@ var_dump(
 
 ## Server
 
-Build interactive server instance to listen Nex protocol connections!
+Build interactive server instance to listen NEX protocol connections!
 
 ``` php
 $server = new \Yggverse\Nex\Server;
@@ -94,4 +94,4 @@ Same to `Server::setLive(false)`
 
 ### Examples
 
-* [next](https://github.com/YGGverse/next) - PHP 8 Server for Nex Protocol
+* [next](https://github.com/YGGverse/next) - PHP 8 Server for NEX Protocol
