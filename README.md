@@ -92,6 +92,6 @@ Stop server instance.
 
 Same to `Server::setLive(false)`
 
-### Examples
+### Integrations
 
 * [next](https://github.com/YGGverse/next) - PHP 8 Server for NEX Protocol
