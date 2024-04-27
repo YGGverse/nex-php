@@ -108,14 +108,17 @@ class Server
             STREAM_SERVER_BIND | STREAM_SERVER_LISTEN
         );
 
+        if ($this->_live)
+        {
+            $this->_live = is_resource(
+                $socket
+            );
+        }
+
         do
         {
             if (!$this->_live)
             {
-                fclose(
-                    $socket
-                );
-
                 break;
             }
 
@@ -160,6 +163,13 @@ class Server
             );
 
         } while ($this->_live);
+
+        if (is_resource($socket))
+        {
+            fclose(
+                $socket
+            );
+        }
     }
 
     public function stop(): void
