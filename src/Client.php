@@ -113,7 +113,10 @@ class Client
             sprintf(
                 "%s%s\r\n",
                 $this->_path,
-                $this->_query
+                $this->_query ? sprintf(
+                    '?%s',
+                    $this->_query
+                ) : null
             )
         );
 
